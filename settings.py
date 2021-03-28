@@ -1,0 +1,1 @@
+LIVES_PLAYER=3
