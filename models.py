@@ -1,5 +1,5 @@
 from random import randint
-from exceptions import EnemyDown
+from exceptions import EnemyDown, GameOver
 from settings import LIVES_PLAYER
 
 class Enemy:
@@ -21,6 +21,7 @@ class Enemy:
             raise EnemyDown
 
 
+
 class Player:
     lives=LIVES_PLAYER
     score=0
@@ -31,8 +32,6 @@ class Player:
     def fight(attack, defense):
         """возвращает результат раунда - 0 если ничья, -1 если атака неуспешна, 1 если атака успешна
         Волшебник-1 побеждает воина-2. Воин-2 побеждает разбойника-3. Разбойник-3 побеждает волшебника-1"""
-        print(attack)
-        print(defense)
         if attack==1 and defense == 2:
             return 1
         elif attack==1 and defense ==3:
@@ -56,7 +55,7 @@ class Player:
         self.lives-=1
         print("You have lives: " + str(self.lives))
         if self.lives == 0:
-            raise EnemyDown
+            raise GameOver
 
     def attack(self, enemy_obj):
         """выбирает атаку противника из объекта enemy_obj; вызывает метод fight();
@@ -69,8 +68,9 @@ class Player:
             print("It's a draw!")
         elif result == 1:
             print("You attacked successfully!")
+            self.score+=1
+            print("Score: "+ str(self.score))
             enemy_obj.decrease_lives()
-
         else:
             print("You missed!")
 
