@@ -8,24 +8,20 @@ def play():
     if start == 'START':
 
         player = Player(name=name_player, allowed_attacks=None)  # что то надо ввести в алловед атакс
-        try:
-            level_game=1
-            enemy = Enemy(level_game)
 
-            def start_game():
-                while True:
-                    player.attack(enemy)
-                    player.defence(enemy)
-            start_game()
+        level_game=1
+        enemy = Enemy(level_game)
+        while True:
+            try:
+                player.attack(enemy)
+                player.defence(enemy)
 
-        except EnemyDown:
-            player.score+=5
-            print(player.score)
-            level_game+=1
-            print(level_game)
-            enemy = Enemy(level_game)
-            start_game()
-
+            except EnemyDown:
+                player.score+=5
+                print("You have " + str(player.score) + "score")
+                level_game+=1
+                print("You level: " + str(level_game))
+                enemy = Enemy(level_game)
 
 
     else:
