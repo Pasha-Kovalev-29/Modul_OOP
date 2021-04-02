@@ -4,6 +4,7 @@ from settings import LIVES_PLAYER
 
 
 class Enemy:
+    """class Enemy"""
     level = 1
     lives = level
 
@@ -17,6 +18,7 @@ class Enemy:
         return randint(1, 3)
 
     def decrease_lives(self):
+        """decrease lives enemy"""
         self.lives -= 1
         print("Enemy have lives: " + str(self.lives))
         if self.lives == 0:
@@ -24,6 +26,7 @@ class Enemy:
 
 
 class Player:
+    """class player"""
     lives = LIVES_PLAYER
     score = 0
 
@@ -62,7 +65,8 @@ class Player:
         while player_class not in self.allowed_attacks:
             try:
                 player_class = int(
-                    input('Choose who to attack : 1-Wizard, 2-Warrior, 3-Rogue. Please enter number: '))
+                    input('Choose who to attack : 1-Wizard, 2-Warrior, 3-Rogue.'
+                          ' Please enter number: '))
                 if player_class not in self.allowed_attacks:
                     raise ValueError
             except ValueError:
@@ -79,13 +83,14 @@ class Player:
         else:
             print("You missed!")
 
-    def defence(self, enemy_obj):
+    def defence(self):
         """defence"""
         player_class=None
         while player_class not in self.allowed_attacks:
             try:
                 player_class = int(
-                    input('Choose by whom you defend  : 1-Wizard, 2-Warrior, 3-Rogue. Please enter number: '))
+                    input('Choose by whom you defend  : 1-Wizard, 2-Warrior, 3-Rogue.'
+                          ' Please enter number: '))
                 if player_class not in self.allowed_attacks:
                     raise ValueError
             except ValueError:

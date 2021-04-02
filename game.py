@@ -4,17 +4,18 @@ from settings import ALLOWED_ATTACKS
 
 
 def play():
+    """method play game"""
     name_player = input('Please enter name: ')
     start = input('Please enter START: ')
     if start == 'START':
 
-        player = Player(name=name_player, allowed_attacks=ALLOWED_ATTACKS)  # вводит массив допустимых ударов
+        player = Player(name=name_player, allowed_attacks=ALLOWED_ATTACKS)
         level_game = 1
         enemy = Enemy(level_game)
         while True:
             try:
                 player.attack(enemy)
-                player.defence(enemy)
+                player.defence()
 
             except EnemyDown:
                 player.score += 5
