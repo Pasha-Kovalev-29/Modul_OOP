@@ -13,6 +13,7 @@ class Enemy:
 
     @staticmethod
     def select_attack():
+        """return random numbers"""
         return randint(1, 3)
 
     def decrease_lives(self):
@@ -49,16 +50,23 @@ class Player:
             return 0
 
     def decrease_lives(self):
+        """decrease lives player"""
         self.lives -= 1
         print("You have lives: " + str(self.lives))
         if self.lives == 0:
             raise GameOver(self.name, self.score)
 
     def attack(self, enemy_obj):
-        """выбирает атаку противника из объекта enemy_obj; вызывает метод fight();
-         Если результат боя 0 - вывести "It's a draw!", если 1 = "You attacked successfully!"
-          и уменьшает количество жизней противника на 1, если -1 = "You missed!"""
-        player_class = int(input("Choose who to attack : 1-Wizard, 2-Warrior, 3-Rogue. Please enter number: "))
+        """attack"""
+        player_class=None
+        while player_class not in self.allowed_attacks:
+            try:
+                player_class = int(
+                    input('Choose who to attack : 1-Wizard, 2-Warrior, 3-Rogue. Please enter number: '))
+                if player_class not in self.allowed_attacks:
+                    raise ValueError
+            except ValueError:
+                print("Incorrect input!")
         enemy_class = Enemy.select_attack()
         result = Player.fight(player_class, enemy_class)
         if result == 0:
@@ -72,9 +80,16 @@ class Player:
             print("You missed!")
 
     def defence(self, enemy_obj):
-        """то же самое, что и метод attack(), только в метод fight первым передается атака противника,
-         и при удачной атаке противника вызывается метод decrease_lives игрока"""
-        player_class = int(input("Choose by whom you defend  : 1-Wizard, 2-Warrior, 3-Rogue. Please enter number: "))
+        """defence"""
+        player_class=None
+        while player_class not in self.allowed_attacks:
+            try:
+                player_class = int(
+                    input('Choose by whom you defend  : 1-Wizard, 2-Warrior, 3-Rogue. Please enter number: '))
+                if player_class not in self.allowed_attacks:
+                    raise ValueError
+            except ValueError:
+                print("Incorrect input!")
         enemy_class = Enemy.select_attack()
         result = Player.fight(enemy_class, player_class)
         if result == 0:
