@@ -26,7 +26,7 @@ def play():
 
 
     else:
-        print('ERROR')
+        print('Please enter START')
         play()
 
 

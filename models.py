@@ -36,7 +36,7 @@ class Player:
 
     @staticmethod
     def fight(attack, defense):
-        """returns the result of the round """
+        """returns the result of the round"""
         if attack == 1 and defense == 2:  # а==1 д ==2 || а==2 д==3
             return 1
         elif attack == 1 and defense == 3:

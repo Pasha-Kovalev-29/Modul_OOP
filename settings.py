@@ -1,4 +1,4 @@
-"""the number of lives of the player at the start of the game """
+"""the number of lives of the player at the start of the game"""
 LIVES_PLAYER = 3
 
 "alloved attacks player"

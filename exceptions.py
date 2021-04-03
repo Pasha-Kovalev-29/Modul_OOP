@@ -16,4 +16,4 @@ class GameOver(Exception):
 
 class EnemyDown(Exception):
     """functionality is not important"""
-    print("----------------------------------")
+    print("---------------------------------")
